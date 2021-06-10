@@ -11,11 +11,11 @@ cmake_minimum_required(VERSION 3.5.2)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(sfmltest sfmltest.cpp)
-target_link_libraries(sfmltest ${CONAN_LIBS}) # note the conan libs over here
+add_executable(sfmlgame Source.cpp)
+target_link_libraries(sfmlgame ${CONAN_LIBS}) # note the conan libs over here
 
-add_custom_command(TARGET sfmltest POST_BUILD
+add_custom_command(TARGET sfmlgame POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${PROJECT_SOURCE_DIR}/shaders"
-    $<TARGET_FILE_DIR:sfmltest>
+    "${PROJECT_SOURCE_DIR}/resource/"
+    $<TARGET_FILE_DIR:sfmlgame>
 )
