@@ -1,6 +1,10 @@
 project(sfmlgame)
 cmake_minimum_required(VERSION 3.5.2)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Download automatically, you can also just copy the conan.cmake file
 # if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
 #    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
@@ -11,11 +15,11 @@ cmake_minimum_required(VERSION 3.5.2)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(sfmltest sfmltest.cpp)
-target_link_libraries(sfmltest ${CONAN_LIBS}) # note the conan libs over here
+add_executable(earthworm earthworm-jim.cpp)
+target_link_libraries(earthworm ${CONAN_LIBS}) # note the conan libs over here
 
-add_custom_command(TARGET sfmltest POST_BUILD
+add_custom_command(TARGET earthworm POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${PROJECT_SOURCE_DIR}/shaders"
-    $<TARGET_FILE_DIR:sfmltest>
+    "${PROJECT_SOURCE_DIR}/earthworm-jim"
+    $<TARGET_FILE_DIR:earthworm>
 )
